@@ -1,0 +1,7 @@
+# node_modules
+/dapp/node_modules
+/extension/node_modules
+/extension/dist
+/dapp/.idea
+/dapp/.env
+.idea
