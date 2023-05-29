@@ -3,7 +3,7 @@ export const ADMETA_MSG_HACKATHON_SYNC = 'ADMETA_MSG_HACKATHON_SYNC'
 export const ADMETA_MSG_HACKATHON_SYNC_TO = 'ADMETA_MSG_HACKATHON_SYNC_TO'
 export const API = 'http://localhost:3120/'
 // export const WEP_PAGE = 'https://polkadot.hackathon.admeta.network/'
-export const WEP_PAGE = 'http://localhost:3000/'
+export const WEP_PAGE = 'https://xdc.admeta.network/'
 
 export const CLAIM_PAGE = 'https://app.testnet.admeta.network/ad-display'
 
