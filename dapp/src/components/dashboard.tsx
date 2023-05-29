@@ -9,7 +9,7 @@ import { GatewayStatus, useGateway } from "@civic/ethereum-gateway-react";
 
 const Dashboard: FC = () => {
   const [scoreMap, setScoreMap] = useState<any>({})
-  const [isInit, setInit] = useState<number>(0)
+  const [isInit, setInit] = useState<boolean>(false)
   const { address } = useAccount()
   const { gatewayStatus, gatewayToken, gatewayTokenTransaction, civicPassSrcUrl, requestGatewayToken } = useGateway()
 
@@ -27,9 +27,13 @@ const Dashboard: FC = () => {
   useEffect(() => {
     const c = new U.CallEVM()
     c.init().then(async () => {
-      const a = await c.getUserLevelLength()
-      console.log(a.toString())
-      setInit(+a.toString())
+      try {
+        const a = await c.getUserExist()
+        setInit(a)
+      } catch (e) {
+        setInit(false)
+      }
+
     })
   }, [])
 
@@ -134,7 +138,7 @@ const Dashboard: FC = () => {
                     Metaverse: 0,
                     OnChainData: 0
                   })
-                  setInit(1)
+                  setInit(true)
                   await c.setUserLevel(level, allScore, categoryScore)
                 })
               } }

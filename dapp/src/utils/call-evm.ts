@@ -13,11 +13,16 @@ class CallEVM {
   }
 
   async init() {
-    const p = await detectEthereumProvider()
-    const provider = new ethers.providers.Web3Provider(p!)
-    this.signer = provider.getSigner()
-    const c = new ethers.Contract(this.contractAddress, abi, this.signer);
-    this.contract = c.connect(this.signer)
+    try {
+      const p = await detectEthereumProvider()
+      const provider = new ethers.providers.Web3Provider(p!)
+      this.signer = provider.getSigner()
+      const c = new ethers.Contract(this.contractAddress, abi, this.signer);
+      this.contract = c.connect(this.signer)
+    } catch (e) {
+      console.log(e)
+    }
+
   }
 
   async setUserLevel(level: BigNumber, score: BigNumber, categoryScore: string) {
@@ -30,6 +35,10 @@ class CallEVM {
 
   async getUserLevelLength() {
     return await this.contract?.userLevelLength()
+  }
+
+  async getUserExist() {
+    return await this.contract?.userExist()
   }
 
 }
