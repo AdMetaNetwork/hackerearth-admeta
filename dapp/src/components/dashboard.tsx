@@ -25,17 +25,20 @@ const Dashboard: FC = () => {
   }
 
   useEffect(() => {
-    const c = new U.CallEVM()
-    c.init().then(async () => {
-      try {
-        const a = await c.getUserExist()
-        setInit(a)
-      } catch (e) {
-        setInit(false)
-      }
+    if (address) {
+      const c = new U.CallEVM()
+      c.init().then(async () => {
+        try {
+          const a = await c.getUserExist()
+          setInit(a)
+        } catch (e) {
+          setInit(false)
+        }
 
-    })
-  }, [])
+      })
+    }
+
+  }, [address])
 
   return address
     ?
